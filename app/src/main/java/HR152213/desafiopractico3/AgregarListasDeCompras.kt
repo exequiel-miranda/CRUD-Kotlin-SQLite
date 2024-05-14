@@ -1,5 +1,7 @@
-package HR152213.desafiopractivo3
+package HR152213.desafiopractico3
 
+import HR152213.desafiopractivo3.R
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -18,18 +20,12 @@ class AgregarListasDeCompras : AppCompatActivity() {
        ////////////Agregar productos a la lista
        val txtFecha = findViewById<EditText>(R.id.txtFecha)
        val txtTitulo = findViewById<EditText>(R.id.txtTitulo)
-        val txtProducto = findViewById<EditText>(R.id.txtProducto)
-        val btnAgreagarProducto = findViewById<Button>(R.id.btnAgregarProducto)
        val btnCrearListaCompras = findViewById<Button>(R.id.btnCrearListaCompras)
-        val lstProductos = findViewById<ListView>(R.id.lstProductos)
-
-        btnAgreagarProducto.setOnClickListener {
-           conexion.agregarProducto(txtProducto.text.toString(), 1)
-           Toast.makeText(this, "Producto agregado", Toast.LENGTH_LONG).show()
-            txtProducto.setText("")
-           val listado = conexion.mostrarProductos()
-           val miAdaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
-           lstProductos.adapter = miAdaptador
+        btnCrearListaCompras.setOnClickListener {
+           conexion.CrearLista(txtFecha.text.toString(), txtTitulo.text.toString())
+           Toast.makeText(this, "Lista creada", Toast.LENGTH_LONG).show()
+            val pantallaAgregarProductos = Intent(this, agregarProductos::class.java)
+            startActivity(pantallaAgregarProductos)
        }
     }
 }

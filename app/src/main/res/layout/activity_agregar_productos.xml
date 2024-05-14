@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="HR152213.desafiopractico3.agregarProductos">
+
+    <EditText
+        android:id="@+id/txtProducto"
+        android:layout_width="311dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/btnAgregarProducto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="22dp"
+        android:text="Ingresar productos:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtProducto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAgregarProducto"
+        android:layout_width="74dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="57dp"
+        android:text="+"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/txtProducto"
+        app:layout_constraintTop_toBottomOf="@+id/txtProducto" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="15dp"
+        android:text="Productos para esta lista:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/lstProductos"
+        app:layout_constraintStart_toStartOf="@+id/lstProductos"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregarProducto" />
+
+    <ListView
+        android:id="@+id/lstProductos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCrearListaCompra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/btnCrearListaCompra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="27dp"
+        android:text="Crear lista de compras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lstProductos"
+        app:layout_constraintTop_toBottomOf="@+id/lstProductos" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

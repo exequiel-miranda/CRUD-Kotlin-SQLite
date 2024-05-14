@@ -1,4 +1,4 @@
-package HR152213.desafiopractivo3
+package HR152213.desafiopractico3
 
 import android.content.ContentValues
 import android.content.Context
@@ -71,7 +71,7 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
             val id_lista = cursor.getString(1)
             val producto = cursor.getString(2)
 
-            val datos = "$id. $id_lista - $producto"
+            val datos = "$id. $producto"
             miLista.add(datos)
         }
         cursor.close()

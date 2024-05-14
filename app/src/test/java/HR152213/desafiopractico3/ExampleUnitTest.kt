@@ -1,4 +1,4 @@
-package HR152213.desafiopractivo3
+package HR152213.desafiopractico3
 
 import org.junit.Test
 
