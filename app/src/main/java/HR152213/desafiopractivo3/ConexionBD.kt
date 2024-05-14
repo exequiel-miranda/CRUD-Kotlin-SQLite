@@ -32,4 +32,24 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         baseDatos.close()
     }
 
+    fun mostrarLista(): List<String>{
+        val baseDatos: SQLiteDatabase = writableDatabase
+        val cursor = baseDatos.rawQuery("SELECT * FROM lista_compra", null)
+
+        val miLista = mutableListOf<String>()
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(0)
+            val fecha = cursor.getString(1)
+            val titulo = cursor.getString(2)
+
+            val datos = "$id , $fecha, $titulo"
+            miLista.add(datos)
+        }
+        cursor.close()
+        baseDatos.close()
+        return miLista
+    }
+
+
+
 }
