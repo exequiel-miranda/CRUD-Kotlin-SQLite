@@ -32,7 +32,18 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         baseDatos.close()
     }
 
-    fun mostrarLista(): List<String>{
+    fun agregarProducto(producto: String, id_lista:Int){
+        val baseDatos: SQLiteDatabase = writableDatabase
+        val valores: ContentValues = ContentValues()
+
+        valores.put("id_lista", id_lista)
+        valores.put("producto", producto)
+
+        baseDatos.insert("productos_lista", null, valores)
+        baseDatos.close()
+    }
+
+    fun mostrarListas(): List<String>{
         val baseDatos: SQLiteDatabase = writableDatabase
         val cursor = baseDatos.rawQuery("SELECT * FROM lista_compra", null)
 
@@ -42,7 +53,7 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
             val fecha = cursor.getString(1)
             val titulo = cursor.getString(2)
 
-            val datos = "$id , $fecha, $titulo"
+            val datos = "$id. $titulo - $fecha"
             miLista.add(datos)
         }
         cursor.close()
@@ -50,6 +61,23 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         return miLista
     }
 
+    fun mostrarProductos(): List<String>{
+        val baseDatos: SQLiteDatabase = writableDatabase
+        val cursor = baseDatos.rawQuery("SELECT * FROM productos_lista", null)
+
+        val miLista = mutableListOf<String>()
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(0)
+            val id_lista = cursor.getString(1)
+            val producto = cursor.getString(2)
+
+            val datos = "$id. $id_lista - $producto"
+            miLista.add(datos)
+        }
+        cursor.close()
+        baseDatos.close()
+        return miLista
+    }
 
 
 }

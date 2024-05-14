@@ -6,55 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/txtFecha"
-        android:layout_width="309dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:hint="Fecha"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/txtTitulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtTitulo"
-        android:layout_width="305dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="42dp"
-        android:ems="10"
-        android:hint="Titulo"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFecha" />
-
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:text="Guardar"
-        app:layout_constraintBottom_toTopOf="@+id/lstCompras"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
-
     <ListView
         android:id="@+id/lstCompras"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="31dp"
+        android:layout_width="413dp"
+        android:layout_height="457dp"
+        android:layout_marginBottom="188dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Mis listas de compras"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/lstCompras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <Button
+        android:id="@+id/btnAgregarListado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0B1440"
+        android:text="Agregar una nueva lista"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuardar" />
+        app:layout_constraintTop_toBottomOf="@+id/lstCompras" />
 </androidx.constraintlayout.widget.ConstraintLayout>
