@@ -41,31 +41,35 @@ class actualizarListaCompras : AppCompatActivity() {
             Toast.makeText(this, "Lista actualizada", Toast.LENGTH_SHORT).show()
         }
 
-       fun actualizarProducto(Producto: String) {
-           val builder = AlertDialog.Builder(this)
-           builder.setTitle("Actualizar producto")
 
-           val nombreProducto = EditText(this)
-           nombreProducto.hint = "Producto"
-           val idProducto = Producto.split(".")
-           nombreProducto.setText(idProducto[0].substring(1))
-           nombreProducto.setText(Producto)
+        fun actualizarProducto(Producto: String) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Actualizar producto")
 
-           val layout = LinearLayout(this)
-           layout.orientation = LinearLayout.VERTICAL
-           layout.addView(nombreProducto)
-           builder.setView(layout)
+            val nombreProducto = EditText(this)
+            nombreProducto.hint = "Producto"
+            val idProducto = Producto.split(".")
+            //nombreProducto.setText(idProducto[0].substring(1))
 
-           builder.setPositiveButton("Actualizar") { dialog, which ->
-               val nuevoNumeroProducto = nombreProducto.text.toString()
-               val idProducto = idProducto[0].toInt()
-               conexion.actualizarNombreProducto(idProducto, nuevoNumeroProducto)
-               builder.setNegativeButton("Cancelar", null)
-               builder.show()
-           }
-           builder.show()
-       }
-        
+            val layout = LinearLayout(this)
+            layout.orientation = LinearLayout.VERTICAL
+            layout.addView(nombreProducto)
+            builder.setView(layout)
+
+            builder.setPositiveButton("Actualizar") { dialog, which ->
+                val nuevoNombreProducto = nombreProducto.text.toString()
+                val idProducto = idProducto[0].toInt()
+                conexion.actualizarNombreProducto(idProducto, nuevoNombreProducto)
+                Toast.makeText(this, "Producto actualizado", Toast.LENGTH_SHORT).show()
+                conexion.mostrarProductosActualizar(idListaL)
+                conexion.datosDeLaListaParaActualizar(this, idListaL)
+            }
+            builder.setNegativeButton("Cancelar", null)
+
+
+            builder.show()
+        }
+
             lstProductosEditar.setOnItemClickListener { parent, view, position, id ->
                 val listaSeleccionada = parent.getItemAtPosition(position) as String
                 val idLista = listaSeleccionada.split(".")[0].toInt()
