@@ -120,7 +120,7 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         baseDatos.delete("productos_lista", "id_producto_lista = ?", arrayOf(idProducto.toString()))
     }
 
-        @SuppressLint("Range")
+    @SuppressLint("Range")
     fun datosDeLaListaParaActualizar(activity: AppCompatActivity, idLista: Any): Boolean {
         val baseDatos: SQLiteDatabase = writableDatabase
         val cursor = baseDatos.rawQuery(
@@ -139,22 +139,22 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
             success = true
         }
 
+        cursor.moveToPosition(-1)
         val productos = mutableListOf<String>()
         while (cursor.moveToNext()) {
             val idProducto = cursor.getInt(cursor.getColumnIndex("id_producto_lista"))
             val producto = cursor.getString(cursor.getColumnIndex("producto"))
             productos.add("$idProducto. $producto")
         }
-        // Mostrar los productos en el ListView
         val listViewProductos = activity.findViewById<ListView>(R.id.lstProductosEditar)
         val adaptador = ArrayAdapter(activity, android.R.layout.simple_list_item_1, productos)
         listViewProductos.adapter = adaptador
-
 
         cursor.close()
         baseDatos.close()
         return success
     }
+
 
     fun mostrarProductosActualizar(idListaL: Int): List<String>{
         val baseDatos: SQLiteDatabase = writableDatabase

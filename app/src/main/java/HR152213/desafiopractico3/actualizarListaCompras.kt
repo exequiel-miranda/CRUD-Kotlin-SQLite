@@ -23,7 +23,7 @@ class actualizarListaCompras : AppCompatActivity() {
         setContentView(R.layout.activity_actualizar_lista_compras)
 
         conexion = ConexionBD(this)
-        val idListaL = intent.getIntExtra("idLista", -1)
+        val idListaL = intent.getIntExtra("idLista", 1)
         conexion.datosDeLaListaParaActualizar(this, idListaL)
 
         val btnActualizarListaCompras = findViewById<Button>(R.id.btnActualizarListaCompras)
