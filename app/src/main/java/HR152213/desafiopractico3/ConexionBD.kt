@@ -1,7 +1,9 @@
 package HR152213.desafiopractico3
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -61,9 +63,9 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         return miLista
     }
 
-    fun mostrarProductos(): List<String>{
+    fun mostrarProductos(ultimoID: Int): List<String>{
         val baseDatos: SQLiteDatabase = writableDatabase
-        val cursor = baseDatos.rawQuery("SELECT * FROM productos_lista", null)
+        val cursor = baseDatos.rawQuery("SELECT * FROM productos_lista WHERE id_lista = $ultimoID", null)
 
         val miLista = mutableListOf<String>()
         while (cursor.moveToNext()) {
@@ -71,13 +73,29 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
             val id_lista = cursor.getString(1)
             val producto = cursor.getString(2)
 
-            val datos = "$id. $producto"
+            val datos = "$producto"
             miLista.add(datos)
         }
         cursor.close()
         baseDatos.close()
         return miLista
     }
+
+    @SuppressLint("Range")
+    fun idUltimaLista(): Int {
+        val db = this.readableDatabase
+        var id = 0
+        val query = "SELECT MAX(id_lista) AS max_id FROM lista_compra"
+        val cursor: Cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            id = cursor.getInt(cursor.getColumnIndex("max_id"))
+        }
+        cursor.close()
+        db.close()
+        return id
+    }
+
+
 
 
 }

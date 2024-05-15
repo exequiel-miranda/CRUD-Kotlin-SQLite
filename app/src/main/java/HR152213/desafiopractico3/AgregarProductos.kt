@@ -25,10 +25,13 @@ class agregarProductos : AppCompatActivity() {
         val btnCrearListaCompra = findViewById<Button>(R.id.btnCrearListaCompra)
 
         btnAgregarProducto.setOnClickListener {
-            conexion.agregarProducto(txtProductos.text.toString(), 1)
-            Toast.makeText(this, "Lista creada", Toast.LENGTH_LONG).show()
+
+            val ultimoID = conexion.idUltimaLista()
+
+            conexion.agregarProducto(txtProductos.text.toString(), ultimoID)
+            Toast.makeText(this, "Producto agregado", Toast.LENGTH_LONG).show()
             txtProductos.setText("")
-            val listado = conexion.mostrarProductos()
+            val listado = conexion.mostrarProductos(ultimoID)
             val miAdaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
             lstProductos.adapter = miAdaptador
         }
