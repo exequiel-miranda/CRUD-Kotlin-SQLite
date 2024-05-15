@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -40,35 +41,58 @@ class actualizarListaCompras : AppCompatActivity() {
             Toast.makeText(this, "Lista actualizada", Toast.LENGTH_SHORT).show()
         }
 
+       fun actualizarProducto(Producto: String) {
+           val builder = AlertDialog.Builder(this)
+           builder.setTitle("Actualizar producto")
 
-        ///Darle clic a un producto de la lista y poder borrarlo
-        lstProductosEditar.setOnItemClickListener { parent, view, position, id ->
-            val listaSeleccionada = parent.getItemAtPosition(position) as String
-            val idLista = listaSeleccionada.split(".")[0].toInt()
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("¿Que deseas realizar?")
-            builder.setMessage("Selecciona una opción")
-            builder.setPositiveButton("Actualizar") { dialog, which ->
+           val nombreProducto = EditText(this)
+           nombreProducto.hint = "Producto"
+           val idProducto = Producto.split(".")
+           nombreProducto.setText(idProducto[0].substring(1))
+           nombreProducto.setText(Producto)
 
+           val layout = LinearLayout(this)
+           layout.orientation = LinearLayout.VERTICAL
+           layout.addView(nombreProducto)
+           builder.setView(layout)
+
+           builder.setPositiveButton("Actualizar") { dialog, which ->
+               val nuevoNumeroProducto = nombreProducto.text.toString()
+               val idProducto = idProducto[0].toInt()
+               conexion.actualizarNombreProducto(idProducto, nuevoNumeroProducto)
+               builder.setNegativeButton("Cancelar", null)
+               builder.show()
+           }
+           builder.show()
+       }
+        
+            lstProductosEditar.setOnItemClickListener { parent, view, position, id ->
+                val listaSeleccionada = parent.getItemAtPosition(position) as String
+                val idLista = listaSeleccionada.split(".")[0].toInt()
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("¿Que deseas realizar?")
+                builder.setMessage("Selecciona una opción")
+                builder.setPositiveButton("Actualizar") { dialog, which ->
+                    actualizarProducto(listaSeleccionada)
+                }
+                builder.setNegativeButton("Borrar") { dialog, which ->
+                    conexion.borrarProducto(idLista)
+                    conexion.datosDeLaListaParaActualizar(this, idListaL)
+                    val listado = conexion.mostrarProductosActualizar(idListaL)
+                    val miAdaptador =
+                        ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
+                    lstProductosEditar.adapter = miAdaptador
+                }
+                val dialog = builder.create()
+                dialog.show()
             }
-            builder.setNegativeButton("Borrar") { dialog, which ->
-                conexion.borrarProducto(idLista)
-                conexion.datosDeLaListaParaActualizar(this, idListaL)
-                val listado = conexion.mostrarProductosActualizar(idListaL)
-                val miAdaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
-                lstProductosEditar.adapter = miAdaptador
+
+
+            imgAtras.setOnClickListener {
+                val pantallaMain = Intent(this, MainActivity::class.java)
+                startActivity(pantallaMain)
             }
-            val dialog = builder.create()
-            dialog.show()
+
+
         }
-
-
-        imgAtras.setOnClickListener {
-            val pantallaMain = Intent(this, MainActivity::class.java)
-            startActivity(pantallaMain)
-        }
-
-
-
     }
-}

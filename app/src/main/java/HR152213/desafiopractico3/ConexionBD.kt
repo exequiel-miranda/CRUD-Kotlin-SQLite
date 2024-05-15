@@ -185,5 +185,13 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         baseDatos.close()
     }
 
+    fun actualizarNombreProducto(idProducto: Int, nuevoNombre: String) {
+        val baseDatos: SQLiteDatabase = writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("nombre", nuevoNombre)
+        baseDatos.update("productos_lista", contentValues, "id_producto_lista = ?", arrayOf(idProducto.toString()))
+        baseDatos.close()
+    }
+
 
 }
