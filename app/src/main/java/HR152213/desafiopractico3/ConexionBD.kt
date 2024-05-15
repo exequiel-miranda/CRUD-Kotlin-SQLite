@@ -119,7 +119,6 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
             "SELECT lc.fecha, lc.titulo, pl.producto FROM lista_compra lc INNER JOIN productos_lista pl ON lc.id_lista = pl.id_lista WHERE lc.id_lista = $idLista",
             null
         )
-
         var success = false
         if (cursor.moveToFirst()) {
             val fecha = cursor.getString(cursor.getColumnIndex("fecha"))
@@ -141,17 +140,14 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
     fun actualizarListaCompra(idLista: Int, nuevaFecha: String, nuevoTitulo: String, nuevosProductos: String) {
         val baseDatos: SQLiteDatabase = writableDatabase
 
-        // Actualizar la tabla lista_compra con la nueva fecha y título
         val contentValues = ContentValues()
         contentValues.put("fecha", nuevaFecha)
         contentValues.put("titulo", nuevoTitulo)
         baseDatos.update("lista_compra", contentValues, "id_lista = ?", arrayOf(idLista.toString()))
 
-        // Eliminar los productos existentes asociados a la lista de compras
         baseDatos.delete("productos_lista", "id_lista = ?", arrayOf(idLista.toString()))
 
-        // Insertar los nuevos productos asociados a la lista de compras
-        val productos = nuevosProductos.split("\n") // Separar los productos por saltos de línea
+        val productos = nuevosProductos.split("\n")
         for (productoCantidad in productos) {
             val partes = productoCantidad.split("-")
             if (partes.size == 2) {
