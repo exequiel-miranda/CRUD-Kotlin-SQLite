@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     lateinit var conexion: ConexionBD
@@ -28,6 +30,30 @@ class MainActivity : AppCompatActivity() {
             val agregarListadoCompras = Intent(this, AgregarListasDeCompras::class.java)
             startActivity(agregarListadoCompras)
         }
+
+        ///Darle clic a un elemento de la lista y poder borrarlo
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val listaSeleccionada = parent.getItemAtPosition(position) as String
+            val idLista = listaSeleccionada.split(".")[0].toInt()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Confirmar")
+            builder.setMessage("¿Que deseas realizar?")
+            builder.setPositiveButton("Actualizar") { dialog, which ->
+
+            }
+            builder.setNegativeButton("Borrar") { dialog, which ->
+                conexion.borrarLista(idLista)
+                Toast.makeText(this, "Producto borrado", Toast.LENGTH_SHORT).show()
+                val listado = conexion.mostrarListas()
+                val miAdaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
+                listView.adapter = miAdaptador
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+
 
     }
 

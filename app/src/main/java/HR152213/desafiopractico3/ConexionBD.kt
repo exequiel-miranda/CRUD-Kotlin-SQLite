@@ -95,6 +95,20 @@ class ConexionBD(context: Context): SQLiteOpenHelper(context, nombreBD, factory,
         return id
     }
 
+    fun borrarLista(idLista: Any): Boolean {
+        val db = this.writableDatabase
+        return try {
+            val query = "DELETE FROM lista_compra WHERE id_lista = $idLista"
+            db.execSQL(query)
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
+
 
 
 
