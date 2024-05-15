@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage("¿Que deseas realizar?")
             builder.setPositiveButton("Actualizar") { dialog, which ->
 
+                val intent = Intent(this, actualizarListaCompras::class.java)
+                intent.putExtra("idLista", idLista)
+                startActivity(intent)
             }
             builder.setNegativeButton("Borrar") { dialog, which ->
                 conexion.borrarLista(idLista)
