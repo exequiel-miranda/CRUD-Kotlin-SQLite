@@ -9,66 +9,66 @@
 
     <EditText
         android:id="@+id/txtTituloEditar"
-        android:layout_width="290dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="158dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="34dp"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/lstProductosEditar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaEditar" />
 
     <EditText
         android:id="@+id/txtFechaEditar"
-        android:layout_width="290dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="62dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="31dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/txtTituloEditar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnActualizarListaCompras"
-        android:layout_width="251dp"
-        android:layout_height="66dp"
+        android:layout_width="262dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="15dp"
         android:text="Actualizar lista de compras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lstProductosEditar" />
 
     <ImageView
         android:id="@+id/imgAtras"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtFechaEditar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        android:layout_width="43dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="189dp"
+        app:layout_constraintBottom_toTopOf="@+id/lstProductosEditar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
 
-    <EditText
-        android:id="@+id/txtProductoEditar"
-        android:layout_width="291dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/btnActualizarListaCompras"
+    <ListView
+        android:id="@+id/lstProductosEditar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="126dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloEditar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAtras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

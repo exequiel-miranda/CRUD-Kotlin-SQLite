@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             val listaSeleccionada = parent.getItemAtPosition(position) as String
             val idLista = listaSeleccionada.split(".")[0].toInt()
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Confirmar")
-            builder.setMessage("¿Que deseas realizar?")
+            builder.setTitle("¿Que deseas realizar?")
+            builder.setMessage("Selecciona una opción")
             builder.setPositiveButton("Actualizar") { dialog, which ->
 
                 val intent = Intent(this, actualizarListaCompras::class.java)
