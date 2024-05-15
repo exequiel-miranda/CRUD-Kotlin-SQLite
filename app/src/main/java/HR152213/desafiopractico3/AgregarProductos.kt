@@ -1,6 +1,7 @@
 package HR152213.desafiopractico3
 
 import HR152213.desafiopractivo3.R
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -25,15 +26,19 @@ class agregarProductos : AppCompatActivity() {
         val btnCrearListaCompra = findViewById<Button>(R.id.btnCrearListaCompra)
 
         btnAgregarProducto.setOnClickListener {
-
             val ultimoID = conexion.idUltimaLista()
-
             conexion.agregarProducto(txtProductos.text.toString(), ultimoID)
             Toast.makeText(this, "Producto agregado", Toast.LENGTH_LONG).show()
             txtProductos.setText("")
             val listado = conexion.mostrarProductos(ultimoID)
             val miAdaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, listado)
             lstProductos.adapter = miAdaptador
+        }
+
+        btnCrearListaCompra.setOnClickListener {
+            Toast.makeText(this, "Lista agregada", Toast.LENGTH_LONG).show()
+            val pantallaMain = Intent(this, MainActivity::class.java)
+            startActivity(pantallaMain)
         }
 
     }

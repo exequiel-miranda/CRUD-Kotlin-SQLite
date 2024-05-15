@@ -23,7 +23,6 @@ class AgregarListasDeCompras : AppCompatActivity() {
        val btnCrearListaCompras = findViewById<Button>(R.id.btnCrearListaCompras)
         btnCrearListaCompras.setOnClickListener {
            conexion.CrearLista(txtFecha.text.toString(), txtTitulo.text.toString())
-           Toast.makeText(this, "Lista creada", Toast.LENGTH_LONG).show()
             val pantallaAgregarProductos = Intent(this, agregarProductos::class.java)
             startActivity(pantallaAgregarProductos)
        }
